@@ -1,5 +1,7 @@
 # dropwizard-dagger
 
+[ ![Download](https://api.bintray.com/packages/tkindy/maven/dropwizard-dagger/images/download.svg) ](https://bintray.com/tkindy/maven/dropwizard-dagger/_latestVersion)
+
 [Dagger](https://github.com/google/dagger) helpers for [Dropwizard](https://github.com/dropwizard/dropwizard) applications in the spirits of [dagger.android](https://google.github.io/dagger/api/latest/dagger/android/package-summary.html) and [dropwizard-guicier](https://github.com/HubSpot/dropwizard-guicier).
 
 ## Usage
