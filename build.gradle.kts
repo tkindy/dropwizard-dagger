@@ -3,15 +3,19 @@ import org.gradle.kotlin.dsl.support.gradleApiMetadataFrom
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.util.Properties
+import java.util.Date
 
 plugins {
     kotlin("jvm") version "1.2.61"
     id("org.jetbrains.kotlin.kapt") version "1.2.61"
     id("com.github.ben-manes.versions") version "0.20.0"
     id("org.jetbrains.dokka") version "0.9.16"
-    `maven-publish`
-    id("com.jfrog.bintray") version "1.6"
+    id("com.jfrog.bintray") version "1.8.4"
+    id("maven-publish")
 }
+
+group = "com.tylerkindy"
+version = "0.1.0-alpha01"
 
 repositories {
     jcenter()
@@ -37,24 +41,19 @@ val properties = Properties()
 properties.load(project.rootProject.file("local.properties").inputStream())
 
 bintray {
-    user = properties["bintray.user"] as String
-    key = properties["bintray.apikey"] as String
-    setPublications("mavenJava")
-
-    val versionName = "0.1.0-alpha01"
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.key")
+    setPublications("mavenPublication")
+    publish = true
 
     pkg = PackageConfig().apply {
-        repo = "maven"
-        name = "dropwizard-dagger"
-        userOrg = user
+        repo = properties.getProperty("bintray.repo")
+        name = rootProject.name
         setLicenses("Apache-2.0")
         vcsUrl = "https://github.com/tkindy/dropwizard-dagger.git"
-        setLabels("dropwizard", "dagger")
-        publicDownloadNumbers = true
+
         version = VersionConfig().apply {
-            name = versionName
-            desc = "dropwizard-dagger v$versionName"
-            vcsTag = versionName
+            name = rootProject.version as String
         }
     }
 }
@@ -73,20 +72,19 @@ val dokkaJar by tasks.creating(Jar::class) {
 
 val sourcesJar by tasks.creating(Jar::class) {
     from(sourceSets["main"].allSource)
+    classifier = "sources"
 }
 
 publishing {
     publications {
-        create("mavenJava", MavenPublication::class.java) {
-            artifactId = project.bintray.pkg.name
-            from(components["java"])
+        create("mavenPublication", MavenPublication::class.java) {
+            from(components.getByName("java"))
+            groupId = rootProject.group as String
+            artifactId = rootProject.name
+            version = rootProject.version as String
 
-            artifact(sourcesJar) {
-                classifier = "sources"
-            }
-            artifact(dokkaJar) {
-                classifier = "javadoc"
-            }
+            artifact(sourcesJar)
+            artifact(dokkaJar)
         }
     }
 }
