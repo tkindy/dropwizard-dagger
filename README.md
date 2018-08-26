@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-  implementation "com.tylerkindy:dropwizard-dagger:0.1.0"
+  implementation "com.tylerkindy:dropwizard-dagger:0.1.0-alpha01"
 }
 ```
 
@@ -50,13 +50,14 @@ interface DropwizardModule {
 
 > This is just an example of how to break out your modules. As long as all of your resources are bound in the dependency graph, the library will be able to inject them.
 
-Then, add your module(s) to your `@Component` and have it implement `DropwizardInjector`:
+Then, add your module(s) as well as the `DropwizardInjectionModule` to your `@Component` and have it implement `DropwizardInjector`:
 
 ```kotlin
 @Singleton
 @Component(
   modules = [
-    DropwizardModule::class
+    DropwizardModule::class,
+    DropwizardInjectionModule::class
   ]
 )
 interface ApplicationComponent : DropwizardInjector<HelloWorldApplication>
