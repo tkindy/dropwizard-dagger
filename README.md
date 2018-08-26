@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-  implementation "com.tylerkindy:dropwizard-dagger:0.1.0-alpha01"
+  implementation "com.tylerkindy:dropwizard-dagger:0.1.0-alpha02"
 }
 ```
 
