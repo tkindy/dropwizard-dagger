@@ -4,6 +4,8 @@
 
 [Dagger](https://github.com/google/dagger) helpers for [Dropwizard](https://github.com/dropwizard/dropwizard) applications in the spirits of [dagger.android](https://google.github.io/dagger/api/latest/dagger/android/package-summary.html) and [dropwizard-guicier](https://github.com/HubSpot/dropwizard-guicier).
 
+This library leverages Dagger to automatically construct and register Dropwizard resources and health checks on application launch.
+
 ## Usage
 
 Add the following to your `build.gradle`:
