@@ -9,13 +9,14 @@ abstract class DaggerApplication<C : Configuration> : Application<C>() {
 
     @Inject
     @JvmSuppressWildcards
-    lateinit var resources: Set<Resource>
+    internal lateinit var resources: Set<Resource>
 
     @Inject
     @JvmSuppressWildcards
-    lateinit var healthChecks: Set<NamedHealthCheck>
+    internal lateinit var healthChecks: Set<NamedHealthCheck>
 
     override fun run(configuration: C, environment: Environment) {
+        @Suppress("UNCHECKED_CAST")
         (applicationInjector(configuration) as DropwizardInjector<DaggerApplication<*>>).inject(this)
 
         resources.forEach { resource ->
