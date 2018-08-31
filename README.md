@@ -69,7 +69,10 @@ Rebuild the project and extend `DaggerApplication` instead of Dropwizard's `Appl
 
 ```kotlin
 class HelloWorldApplication : DaggerApplication<HelloWorldConfiguration>() {
-  override fun applicationInjector(configuration: HelloWorldConfiguration): DropwizardInjector<HelloWorldApplication> {
+  override fun applicationInjector(
+    configuration: HelloWorldConfiguration,
+    environment: Environment
+  ): DropwizardInjector<HelloWorldApplication> {
     return DaggerApplicationComponent.create()
   }
 }

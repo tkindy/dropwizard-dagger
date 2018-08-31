@@ -19,7 +19,8 @@ abstract class DaggerApplication<C : Configuration> : Application<C>() {
     @OverridingMethodsMustInvokeSuper
     override fun run(configuration: C, environment: Environment) {
         @Suppress("UNCHECKED_CAST")
-        (applicationInjector(configuration) as DropwizardInjector<DaggerApplication<*>>).inject(this)
+        (applicationInjector(configuration, environment) as DropwizardInjector<DaggerApplication<*>>)
+            .inject(this)
 
         resources.forEach { resource ->
             environment.jersey().register(resource)
@@ -30,5 +31,8 @@ abstract class DaggerApplication<C : Configuration> : Application<C>() {
         }
     }
 
-    protected abstract fun applicationInjector(configuration: C): DropwizardInjector<out DaggerApplication<*>>
+    protected abstract fun applicationInjector(
+        configuration: C,
+        environment: Environment
+    ): DropwizardInjector<out DaggerApplication<*>>
 }
