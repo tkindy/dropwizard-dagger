@@ -4,6 +4,7 @@ import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.util.Properties
 import java.util.Date
+import java.io.File
 
 plugins {
     kotlin("jvm") version "1.2.61"
@@ -37,8 +38,12 @@ tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 
-val properties = Properties()
-properties.load(project.rootProject.file("local.properties").inputStream())
+val properties = Properties().apply {
+    try {
+        load(project.rootProject.file("local.properties").inputStream())
+    } catch (e: Throwable) {
+    }
+}
 
 bintray {
     user = properties.getProperty("bintray.user")
