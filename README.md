@@ -1,7 +1,7 @@
 # dropwizard-dagger
 
-[![CircleCI](https://circleci.com/gh/tkindy/dropwizard-dagger.svg?style=shield)](https://circleci.com/gh/tkindy/dropwizard-dagger)
-[ ![Download](https://api.bintray.com/packages/tkindy/maven/dropwizard-dagger/images/download.svg) ](https://bintray.com/tkindy/maven/dropwizard-dagger/_latestVersion)
+[![CircleCI](https://img.shields.io/circleci/project/github/tkindy/dropwizard-dagger/master.svg?label=circleci)](https://circleci.com/gh/tkindy/dropwizard-dagger/tree/master)
+[![Bintray](https://img.shields.io/bintray/v/tkindy/maven/dropwizard-dagger.svg)](https://bintray.com/tkindy/maven/dropwizard-dagger)
 
 [Dagger](https://github.com/google/dagger) helpers for [Dropwizard](https://github.com/dropwizard/dropwizard) applications in the spirits of [dagger.android](https://google.github.io/dagger/api/latest/dagger/android/package-summary.html) and [dropwizard-guicier](https://github.com/HubSpot/dropwizard-guicier).
 
