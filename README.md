@@ -80,6 +80,27 @@ class HelloWorldApplication : DaggerApplication<HelloWorldConfiguration>() {
 
 Now, you can run your application and Dagger will automatically construct and register your resources and health checks.
 
+## Publishing
+
+Run the build and tests:
+
+```
+> ./gradlew clean check
+```
+
+Then, update the version number in `build.gradle.kts` and in the example above and commit the changes:
+
+```
+> git add build.gradle.kts README.md
+> git commit -m "Prepare x.y.z release"
+```
+
+Finally, rebuild and publish to Bintray:
+
+```
+> ./gradlew bintrayUpload
+```
+
 ## Work in Progress
 
 It's pretty cumbersome to use this library in its experimental form. I'm developing it actively to make it easier to implement in a new or existing Dropwizard project.
