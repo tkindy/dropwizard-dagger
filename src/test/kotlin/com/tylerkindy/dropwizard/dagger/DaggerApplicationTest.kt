@@ -37,7 +37,10 @@ class DaggerApplicationTest {
 private interface TestComponent : DropwizardInjector<TestApplication>
 
 private class TestApplication : DaggerApplication<TestConfiguration>() {
-    override fun applicationInjector(configuration: TestConfiguration): DropwizardInjector<out DaggerApplication<*>> {
+    override fun applicationInjector(
+        configuration: TestConfiguration,
+        environment: Environment
+    ): DropwizardInjector<out DaggerApplication<*>> {
         return DaggerTestComponent.create()
     }
 }
