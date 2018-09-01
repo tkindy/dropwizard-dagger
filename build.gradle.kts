@@ -15,7 +15,7 @@ plugins {
 }
 
 group = "com.tylerkindy"
-version = "0.1.0-alpha02"
+version = "0.1.0-alpha03"
 
 repositories {
     jcenter()
